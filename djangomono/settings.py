@@ -34,8 +34,10 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # own
+    'authx',
     # custom
-    'corsheaders', 
+    'corsheaders',
     'rest_framework',
     # pre-installed
     'django.contrib.admin',
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     # custom
+    'django.middleware.locale.LocaleMiddleware',  # i18n
     'corsheaders.middleware.CorsMiddleware',
     # pre-installed
     'django.middleware.security.SecurityMiddleware',
@@ -58,9 +61,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # own
+    'authx.middleware.SetLastUserLoggin',
 ]
 
 ROOT_URLCONF = 'djangomono.urls'
+AUTH_USER_MODEL = 'authx.CustomUser'
 
 TEMPLATES = [
     {
@@ -119,6 +125,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+LANGUAGES = (
+    ('pl', 'polish'),
+    ('en', 'english'),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
 
 TIME_ZONE = 'UTC'
 
@@ -141,9 +154,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # custom settings
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':[
+    'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE':10,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
