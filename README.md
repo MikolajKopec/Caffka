@@ -1,4 +1,9 @@
 
+# Caffka
+
+Caffka is app for managing cafe restaurant. For now it's just django based REST API, but i'm planning to make front in react for it.
+
+
 ## Installation
 
 Thanks to docker, you don't need much for run this project locally.
