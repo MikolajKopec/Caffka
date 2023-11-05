@@ -9,6 +9,8 @@ class CustomUserMenager(BaseUserManager):
     def create_user(self, username, email, password=None, user_role=None):
         if not email:
             raise ValueError('Users must have an email address')
+        if not password:
+            raise ValueError('Users must have an password')
         user = self.model(
             username=username,
             email=self.normalize_email(email),
@@ -38,7 +40,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     phone = models.PositiveIntegerField(unique=False, null=True, blank=True)
 
-    is_active = models.BooleanField(_("Is active User"), default=True)
+    is_active = models.BooleanField(_("Is active User"), default=False)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
