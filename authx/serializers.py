@@ -16,7 +16,6 @@ class UserSerializer(ModelSerializer):
 
     def create(self, validated_data):
         try:
-            print(validated_data, flush=True)
             username = validated_data.pop('username', None)
             password = validated_data.pop('password', None)
             email = validated_data.pop('email', None)

@@ -51,4 +51,7 @@ class TokenAuthentication(BaseAuthentication):
                 _("User not found"), code="user_not_found"
             ) from e
 
+        if not user.is_active:
+            raise AuthenticationFailed(
+                _("User is inactive"), code="user_inactive")
         return user
