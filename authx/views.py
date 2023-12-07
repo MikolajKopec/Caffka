@@ -33,8 +33,8 @@ class LoginView(APIView):
 
         payload = {
             'id': user.id,
-            'exp': datetime.utcnow(timezone.utc) + timedelta(minutes=60),
-            'iat': datetime.utcnow(timezone.utc)
+            'exp': datetime.now(timezone.utc) + timedelta(minutes=60),
+            'iat': datetime.now(timezone.utc)
         }
         token = create_jwt(payload)
         return Response({'jwt': token})
