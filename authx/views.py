@@ -6,7 +6,7 @@ from rest_framework.exceptions import AuthenticationFailed
 
 from .jwt import create_jwt
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 User = get_user_model()
 
@@ -33,8 +33,8 @@ class LoginView(APIView):
 
         payload = {
             'id': user.id,
-            'exp': datetime.utcnow() + timedelta(minutes=60),
-            'iat': datetime.utcnow()
+            'exp': datetime.utcnow(timezone.utc) + timedelta(minutes=60),
+            'iat': datetime.utcnow(timezone.utc)
         }
         token = create_jwt(payload)
         return Response({'jwt': token})

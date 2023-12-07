@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     # own
     'authx',
+    'supplier',
+    'story',
     # custom
     'corsheaders',
     'rest_framework',
