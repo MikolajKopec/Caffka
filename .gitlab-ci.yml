@@ -1,0 +1,10 @@
+stages:
+  - push_to_github
+
+push_to_github:
+  stage: push_to_github
+  only:
+    - master # lub inna gałąź, którą chcesz synchronizować
+  script:
+    - git remote add github https://x-access-token:$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@github.com/MikolajKopec/Caffka.git
+    - git push github HEAD:master
