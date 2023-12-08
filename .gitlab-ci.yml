@@ -6,5 +6,5 @@ push_to_github:
   only:
     - main 
   script:
-    - git remote add github https://{GITHUB_TOKEN}>@github.com/<username>/<repo>.git
+    - git remote add github https://{GITHUB_TOKEN}>@github.com/MikolajKopec/Caffka.git
     - git push github HEAD:main
